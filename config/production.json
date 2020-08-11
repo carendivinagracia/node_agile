@@ -1,0 +1,6 @@
+{
+  "mail": {
+    "server": "prod-mail-server",
+    "sender": "prod-mail-sender"
+  }
+}
