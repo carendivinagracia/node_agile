@@ -2,3 +2,4 @@
 yarn-error.log*
 yarn-debug.log*
 /public/sample.txt
+/log/*
