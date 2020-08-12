@@ -33,8 +33,8 @@ router.post('/auth', async (req, res) => {
 });
 
 router.get('/me', auth, async (req, res) => {
-  const { id, role } = req.user;
-  const user = await User.findOne({ _id: id, role }).select({
+  const { _id, role } = req.user;
+  const user = await User.findOne({ _id, role }).select({
     name: 1,
     email: 1,
     role: 1,

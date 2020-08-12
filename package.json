@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "yarn nodemon index.js",
-    "test": "jest --watchAll"
+    "test": "jest"
   },
   "dependencies": {
     "@hapi/joi": "^17.1.1",
