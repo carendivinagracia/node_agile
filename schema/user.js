@@ -32,6 +32,12 @@ userSchema.methods.generateAuthToken = function() {
   return token;
 };
 
+userSchema.methods.generateTestAuthToken = function() {
+  const token = jwt.sign({ name: this.name, role: this.role }, config.get('jwt-key'));
+
+  return token;
+};
+
 const validateCreateUserInput = (userInput) => {
   const schema = Joi.object({
     name: Joi.string().min(5).required(),
