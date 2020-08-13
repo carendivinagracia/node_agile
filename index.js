@@ -4,7 +4,7 @@ const app = express();
 // Template Engine
 require('./startup/template')(app);
 
-// Config 
+// Config
 require('./startup/config')();
 
 // Routes
@@ -14,9 +14,13 @@ require('./startup/routes')(app);
 require('./startup/db')();
 
 // Logging
-require('./startup/logger')();
+// require('./startup/logger')();
 
+const server = app.listen(3000, () => {
+  if (process.NODE_ENV === 'development')
+    console.log('Listening on port 3000...');
+});
 
-app.listen(3000, () => console.log('Listening on port 3000...'));
+module.exports = server;
 
 // to exit the app, run process.exit(1)

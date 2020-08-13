@@ -4,8 +4,8 @@ const config = require('config');
 const mongoose = require('mongoose');
 
 // user.generateAuthToken is a test suite
-describe('user.generateAuthToken', () => {
-  it('should return a valid JWT', () => {
+describe('User.generateAuthToken', () => {
+  test('should return a valid JWT', () => {
     const payload = {
       _id: mongoose.Types.ObjectId().toHexString(),
       role: 'admin',

@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "yarn nodemon index.js",
-    "test": "jest"
+    "test": "jest --testEnvironment=node --runInBand --detectOpenHandles --forceExit"
   },
   "dependencies": {
     "@hapi/joi": "^17.1.1",
@@ -24,6 +24,7 @@
     "winston-mongodb": "^5.0.1"
   },
   "devDependencies": {
-    "jest": "^26.3.0"
+    "jest": "^26.3.0",
+    "supertest": "^4.0.2"
   }
 }

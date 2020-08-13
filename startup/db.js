@@ -8,7 +8,10 @@ module.exports = () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
-    .then(() => console.log(`Connected to ${dbConn}...`))
+    .then(() => {
+      if (process.NODE_ENV === 'development')
+        console.log(`Connected to ${dbConn}...`);
+    })
     .catch((err) =>
       console.log(
         `Something went wrong while establishing connection to MongoDB: ${err.message}`
