@@ -25,8 +25,11 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-userSchema.methods.generateAuthToken = function() {
-  const token = jwt.sign({ _id: this._id, role: this.role }, config.get('jwt-key'));
+userSchema.methods.generateAuthToken = function () {
+  const token = jwt.sign(
+    { _id: this._id, role: this.role },
+    config.get('jwt-key')
+  );
 
   return token;
 };
@@ -44,10 +47,10 @@ const validateCreateUserInput = (userInput) => {
 };
 
 const validateUpdateUserInput = (userInput) => {
-  const schema = {
+  const schema = Joi.object({
     name: Joi.string().min(5).required(),
-    email: Joi.string().email().required()
-  };
+    email: Joi.string().email().required(),
+  });
 
   return schema.validate(userInput);
 };
