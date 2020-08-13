@@ -36,4 +36,15 @@ router.put('/', async (req, res) => {
   res.send(result);
 });
 
+router.delete('/:id', async (req, res) => {
+  const { id } = req.params;
+
+  const deleteBoard = await Board.findByIdAndRemove(id);
+
+  if (!deleteBoard)
+    return res.status(404).send('Board to be deleted is not found.');
+
+  res.send(deleteBoard);
+});
+
 module.exports = router;

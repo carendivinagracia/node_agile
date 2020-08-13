@@ -67,4 +67,15 @@ router.delete('/', async (req, res) => {
   res.send(task);
 });
 
+router.delete('/:id', async (req, res) => {
+  const { id } = req.params;
+
+  const deleteTask = await Task.findByIdAndRemove(id);
+
+  if (!deleteTask)
+    return res.status(404).send('Task to be deleted is not found.');
+
+  res.send(deleteTask);
+});
+
 module.exports = router;

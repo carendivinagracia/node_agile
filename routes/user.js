@@ -15,6 +15,7 @@ router.get('/', auth, async (req, res) => {
   res.send(users);
 });
 
+// Create user API endpoint
 router.post('/auth', async (req, res) => {
   const { email, password } = req.body;
   if (!email && password)
@@ -43,7 +44,7 @@ router.get('/me', auth, async (req, res) => {
   res.send(user);
 });
 
-router.get(':id', auth, async (req, res) => {
+router.get('/:id', auth, async (req, res) => {
   const userId = req.params.id;
 
   const user = await User.findById(userId);
@@ -52,7 +53,7 @@ router.get(':id', auth, async (req, res) => {
   res.send(user);
 });
 
-router.post('/', async (req, res) => {
+router.put('/', async (req, res) => {
   const { error } = validateCreateUserInput(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
@@ -73,7 +74,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.put('/:id', auth, async (req, res) => {
+router.post('/:id', auth, async (req, res) => {
   const { error } = validateUpdateUserInput(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
