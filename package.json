@@ -4,12 +4,16 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "yarn nodemon index.js",
+    "start": "yarn node index.js",
     "test": "jest --testEnvironment=node --runInBand --detectOpenHandles --forceExit"
+  },
+  "engines": {
+    "node": "12.18.2"
   },
   "dependencies": {
     "@hapi/joi": "^17.1.1",
     "bcrypt": "^5.0.0",
+    "compression": "^1.7.4",
     "config": "^3.3.1",
     "debug": "^4.1.1",
     "express": "^4.17.1",
