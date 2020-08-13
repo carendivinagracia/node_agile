@@ -49,7 +49,7 @@ const validateUpdateUserInput = (userInput) => {
     email: Joi.string().email().required()
   };
 
-  return Joi.valid(userInput, schema);
+  return schema.validate(userInput);
 };
 
 exports.UserSchema = userSchema;
