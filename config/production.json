@@ -1,0 +1,9 @@
+{
+  "mail": {
+    "server": "prod-mail-server",
+    "sender": "prod-mail-sender",
+    "password": "MAIL_PASSWORD"
+  },
+  "jwt-key": "JWT_PRIVATE_KEY",
+  "db": "MONGODB_CONN"
+}
