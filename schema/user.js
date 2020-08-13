@@ -18,7 +18,6 @@ const userSchema = new mongoose.Schema({
     required: true,
     minlength: 5,
   },
-  address: String,
   role: {
     type: String,
     enum: ['admin', 'owner', 'assignee'],
@@ -47,8 +46,7 @@ const validateCreateUserInput = (userInput) => {
 const validateUpdateUserInput = (userInput) => {
   const schema = {
     name: Joi.string().min(5).required(),
-    email: Joi.string().email().required(),
-    address: Joi.string(),
+    email: Joi.string().email().required()
   };
 
   return Joi.valid(userInput, schema);

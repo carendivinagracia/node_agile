@@ -15,7 +15,6 @@ router.get('/', auth, async (req, res) => {
   res.send(users);
 });
 
-// Create user API endpoint
 router.post('/auth', async (req, res) => {
   const { email, password } = req.body;
   if (!email && password)
@@ -53,6 +52,7 @@ router.get('/:id', auth, async (req, res) => {
   res.send(user);
 });
 
+// Create user API endpoint
 router.put('/', async (req, res) => {
   const { error } = validateCreateUserInput(req.body);
   if (error) return res.status(400).send(error.details[0].message);
