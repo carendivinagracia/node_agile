@@ -17,7 +17,7 @@ require('./startup/db')();
 // require('./startup/logger')();
 
 const server = app.listen(3000, () => {
-  if (process.NODE_ENV === 'development')
+  if (process.env.NODE_ENV === 'development')
     console.log('Listening on port 3000...');
 });
 

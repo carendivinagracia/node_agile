@@ -9,7 +9,7 @@ module.exports = () => {
       useUnifiedTopology: true,
     })
     .then(() => {
-      if (process.NODE_ENV === 'development')
+      if (process.env.NODE_ENV === 'development')
         console.log(`Connected to ${dbConn}...`);
     })
     .catch((err) =>
