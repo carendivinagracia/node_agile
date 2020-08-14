@@ -1,7 +1,11 @@
 const { Task } = require('../models/task');
 const { Board } = require('../models/board');
+const Fawn = require('fawn');
 const express = require('express');
+const mongoose = require('mongoose');
 const router = express.Router();
+
+Fawn.init(mongoose);
 
 router.get('/', async ({ res }) => {
   const tasks = await Task.find()
@@ -55,18 +59,6 @@ router.put('/', async (req, res) => {
   res.send(result);
 });
 
-router.delete('/', async (req, res) => {
-  const { taskId } = req.body;
-
-  const task = await Task.findById(taskId);
-
-  if (!task) res.status(400).send('Task if not found!');
-
-  task.remove();
-
-  res.send(task);
-});
-
 router.delete('/:id', async (req, res) => {
   const { id } = req.params;
 
@@ -76,6 +68,25 @@ router.delete('/:id', async (req, res) => {
     return res.status(404).send('Task to be deleted is not found.');
 
   res.send(deleteTask);
+});
+
+router.post('/transaction', async (req, res) => {
+  const { taskId, boardId } = req.body;
+
+  const parseTaskId = new mongoose.Types.ObjectId(taskId);
+  const parseBoardId = new mongoose.Types.ObjectId(boardId);
+
+  const task = new Fawn.Task();
+  const board = new Board({ name: 'Test_Transaction Board 5' });
+
+  task
+    .save('boards', board)
+    .update('tasks', { _id: parseTaskId }, { name: 'Test parsed!' })
+    .remove('boards', { _id: parseBoardId })
+    .run()
+    .then(() => {
+      res.send(true);
+    });
 });
 
 module.exports = router;
